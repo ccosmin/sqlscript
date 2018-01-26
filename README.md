@@ -18,7 +18,10 @@ Class.forName("org.hsqldb.jdbcDriver");
 Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:sqlscript.db;shutdown=true");
 String script = "create table x(col varchar(5000)); insert into x(col) values('interesting string');";
 
-SQLScriptRunner runner = SQLScriptRunner.readFromString(script).withJdbcConnection(connection).execute();
+SQLScript sqlScriptExecute =
+          SQLScript.readFromString(script)
+                .usingJDBCConnection(connection)
+                .execute();
 ```
 
 Check the tests for the other samples.
