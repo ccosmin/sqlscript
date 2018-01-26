@@ -40,20 +40,20 @@ public class SQLScript implements Closeable {
         return this;
     }
 
-    public SQLScript wrapInTransaction(boolean explicitTransationBoundaries) {
-        this.wrapInTransaction = explicitTransationBoundaries;
-
-        return this;
-    }
-
-    public SQLScript withJdbcUrl(String jdbcUrl) throws SQLException {
+    public SQLScript usingJDBCURL(String jdbcUrl) throws SQLException {
         this.connection = DriverManager.getConnection(jdbcUrl);
 
         return this;
     }
 
-    public SQLScript withJDBCConnection(Connection connection) {
+    public SQLScript usingJDBCConnection(Connection connection) {
         this.connection = connection;
+
+        return this;
+    }
+
+    public SQLScript wrapInTransaction(boolean explicitTransationBoundaries) {
+        this.wrapInTransaction = explicitTransationBoundaries;
 
         return this;
     }

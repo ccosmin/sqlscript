@@ -17,7 +17,7 @@ public class SQLScriptOnJDBCTest {
     @Test
     public void execute_on_jdbc_url() throws SQLException, IOException {
         SQLScript.fromString("create table x(col varchar(5000));")
-                .withJdbcUrl("jdbc:hsqldb:mem:SQLScriptTestDB;shutdown=true")
+                .usingJDBCURL("jdbc:hsqldb:mem:SQLScriptTestDB;shutdown=true")
                 .execute();
     }
 
@@ -26,7 +26,7 @@ public class SQLScriptOnJDBCTest {
         Connection connection = DriverManager.getConnection("jdbc:hsqldb:mem:SQLScriptTestDB;shutdown=true");
 
         SQLScript.fromString("SET DATABASE SQL SYNTAX ORA TRUE;")
-                .withJDBCConnection(connection)
+                .usingJDBCConnection(connection)
                 .execute();
     }
 }

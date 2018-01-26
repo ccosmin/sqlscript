@@ -37,7 +37,7 @@ public class SQLScriptTest {
     public void execute_simple_create_table() throws IOException, SQLException {
         String script = "create table x(col varchar(5000));";
 
-        SQLScript runner = SQLScript.fromString(script).withJDBCConnection(connection);
+        SQLScript runner = SQLScript.fromString(script).usingJDBCConnection(connection);
 
         runner.execute();
     }
@@ -46,7 +46,7 @@ public class SQLScriptTest {
     public void execute_two_statements() throws IOException, SQLException {
         String script = "create table x(col varchar(5000)); insert into x(col) values('blah blah');";
 
-        SQLScript runner = SQLScript.fromString(script).withJDBCConnection(connection);
+        SQLScript runner = SQLScript.fromString(script).usingJDBCConnection(connection);
 
         runner.execute();
     }
@@ -55,7 +55,7 @@ public class SQLScriptTest {
     public void tolerate_semicolon_in_quote_context() throws IOException, SQLException {
         String script = "create table x(col varchar(5000)); insert into x(col) values('blah ; blah');";
 
-        SQLScript runner = SQLScript.fromString(script).withJDBCConnection(connection);
+        SQLScript runner = SQLScript.fromString(script).usingJDBCConnection(connection);
 
         runner.execute();
     }
@@ -64,7 +64,7 @@ public class SQLScriptTest {
     public void tolerate_escaped_single_quotes() throws IOException, SQLException {
         String script = "create table x(col varchar(5000)); insert into x(col) values('ff''');";
 
-        SQLScript runner = SQLScript.fromString(script).withJDBCConnection(connection);
+        SQLScript runner = SQLScript.fromString(script).usingJDBCConnection(connection);
 
         runner.execute();
 
